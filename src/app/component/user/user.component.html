@@ -1,0 +1,124 @@
+<button class="btn btn-primary" (click)="getData()">getData</button>
+<ng-container *ngIf="userData; else elseTemplate">
+    <ul class="list-group user_detail_con">
+        <li class="list-group-item active">User Data</li>
+        <li class="list-group-item">
+            <span class="heading">ID</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.id }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Name</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.name }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Email</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.email }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Phone Number</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.phone_number }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Segment</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.segment }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Linked User</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.linked_user }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">CPF</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.client_user_cpf }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">User ID</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.id_of_user_in_system }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Place Of Issue</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.place_of_issue }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Telephone</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.telephone }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Profession</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.profession }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Profile Image</span>
+            <span class="space">|</span>
+            <span class="value"><img src="http://localhost:8000/project-assets/uploaded/images/{{ userData.data.user_details.profile_image }}" alt=""></span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Mariage Status</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.mariage_status === 1 ? "Maried" : "Single" }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Gender</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.gender === 1 ? "Female" : "Male" }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Date Of Birth</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.date_of_birth }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Zip Code</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.zip_code }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Number</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.number }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Neighborhood</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.neighborhood }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Complement</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.complement }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">State</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.state }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">UF</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.uf }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">CNPJ</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.franchise_user_cnpj }}</span>
+        </li>
+        <li class="list-group-item">
+            <span class="heading">Company Name</span>
+            <span class="space">|</span>
+            <span class="value">{{ userData.data.user_details.company_name }}</span>
+        </li>
+    </ul>
+</ng-container>
+<ng-template #elseTemplate>
+    
+</ng-template>

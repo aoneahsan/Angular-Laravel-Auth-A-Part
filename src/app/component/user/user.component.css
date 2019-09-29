@@ -1,0 +1,14 @@
+.user_detail_con .heading {
+    width: 20%;
+    display: inline-block;
+    font-weight: bold;
+}
+.user_detail_con .space {
+    width: 10%;
+    font-weight: bold;
+    display: inline-block;
+}
+.user_detail_con .value {
+    width: 60%;
+    display: inline-block;
+}

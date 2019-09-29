@@ -1,0 +1,34 @@
+<mat-sidenav-container>
+    <mat-sidenav #sideBar>
+        <mat-nav-list>
+            <mat-list-item>
+                <a matLine routerLink="/sign-up" (click)="sideBar.close()">Sign Up</a>
+                <!-- <button mat-icon-button>
+                    <mat-icon>face</mat-icon>
+                </button> -->
+            </mat-list-item>
+            <mat-list-item>
+                <a matLine routerLink="/sign-in" (click)="sideBar.close()">Sign In</a>
+                <!-- <button mat-icon-button>
+                    <mat-icon>face</mat-icon>
+                </button> -->
+            </mat-list-item>
+            <mat-list-item>
+                <a matLine routerLink="/trainings" (click)="sideBar.close()">Trainings</a>
+                <!-- <button mat-icon-button>
+                    <mat-icon>home</mat-icon>
+                </button> -->
+            </mat-list-item>
+            <mat-list-item>
+                <a matLine (click)="sideBar.close()">Logout</a>
+                <!-- <button mat-icon-button>
+                    <mat-icon>home</mat-icon>
+                </button> -->
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-header (sideBartoggle)="sideBar.toggle()"></app-header>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

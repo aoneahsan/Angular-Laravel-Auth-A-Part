@@ -1,0 +1,43 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { HttpClientModule } from '@angular/common/http';
+
+import { MaterialModule } from './module/material-module/material-module';
+import { FlexLayoutModule } from "@angular/flex-layout";
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { SignUpComponent } from './component/auth/sign-up/sign-up.component';
+import { SignInComponent } from './component/auth/sign-in/sign-in.component';
+import { HomeComponent } from './component/home/home.component';
+import { HeaderComponent } from './component/navigation/header/header.component';
+import { SideBarComponent } from './component/navigation/side-bar/side-bar.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { UserComponent } from './component/user/user.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    SignUpComponent,
+    SignInComponent,
+    HomeComponent,
+    HeaderComponent,
+    SideBarComponent,
+    DashboardComponent,
+    UserComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    FlexLayoutModule,
+    FormsModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
