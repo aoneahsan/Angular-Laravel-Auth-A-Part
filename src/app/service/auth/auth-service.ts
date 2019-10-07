@@ -16,9 +16,9 @@ import { SiteUIService } from '../site/site-ui-service';
 export class AuthService {
 
   // for My Localhost Work
-  url: string = "http://marketingob-laravel.ahsan/api/";
+  // url: string = "http://marketingob-laravel.ahsan/api/";
   // for Live Site Process
-  // url: string = "http://localhost:8000/api/";
+  url: string = "http://localhost:8000/api/";
 
   User = new BehaviorSubject<User>(null);
   userId: number;
@@ -167,7 +167,7 @@ export class AuthService {
           email: userData.email,
           token: userData._tokken
       };
-      return this._http.post(
+      return this._http.post<any>(
           this.url + "userData",
           newUserData
       ).pipe(

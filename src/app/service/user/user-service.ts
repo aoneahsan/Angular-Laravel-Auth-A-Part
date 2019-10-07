@@ -9,9 +9,9 @@ import { throwError } from 'rxjs';
 export class UserService {
 
   // for My Localhost Work
-  url: string = "http://marketingob-laravel.ahsan/api/";
+  // url: string = "http://marketingob-laravel.ahsan/api/";
   // for Live Site Process
-  // url: string = "http://localhost:8000/api/";
+  url: string = "http://localhost:8000/api/";
 
   constructor(private _http: HttpClient) {}
 
@@ -19,7 +19,7 @@ export class UserService {
 
   allUser() {
     const data = JSON.parse(localStorage.getItem('userDetails'));
-    return this._http.post(
+    return this._http.post<any>(
       this.url + "alluser",
       data
     )

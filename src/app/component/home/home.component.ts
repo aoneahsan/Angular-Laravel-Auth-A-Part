@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   user: User;
   userSubs: Subscription;
+  isLoading: boolean = false;
 
   constructor(private _authService: AuthService) { }
 

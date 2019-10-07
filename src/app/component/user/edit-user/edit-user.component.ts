@@ -41,17 +41,34 @@ export class EditUserComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._authService.getuserDetails().subscribe(
       userData => {
-        // console.log(userData);
-        this.Uname = userData.data.name; this.Uphone_number = userData.data.phone_number;
-        this.Usegment = userData.data.segment; this.Ucpf = userData.data.cpf; this.Uplace_of_issue = userData.data.place_of_issue;
-        this.Utelephone = userData.data.telephone;  this.Uprofession = userData.data.profession;
-        this.Umariage_status = userData.data.mariage_status;  this.Ugender = userData.data.gender;
-        this.Udate_of_birth = userData.data.date_of_birth;  this.Uzip_code = userData.data.zip_code;
-        this.Unumber = userData.data.number;  this.Uaddress = userData.data.address;
-        this.Uneighborhood = userData.data.neighborhood;  this.Ucomplement = userData.data.complement;
-        this.Ustate = userData.data.state;  this.Uuf = userData.data.uf;
-        this.Ucnpj = userData.data.cnpj;  this.Ucompany_name = userData.data.company_name;
-        this.Uadmin_user = userData.data.admin_user;
+         console.log(userData);
+         if(userData.data)
+         {
+          this.Uname = userData.data.name; 
+          this.Uphone_number = userData.data.phone_number;
+          this.Usegment = userData.data.segment; 
+          this.Ucpf = userData.data.cpf; 
+          this.Uplace_of_issue = userData.data.place_of_issue;
+          this.Utelephone = userData.data.telephone;  
+          this.Uprofession = userData.data.profession;
+          this.Umariage_status = userData.data.mariage_status;  
+          this.Ugender = userData.data.gender;
+          this.Udate_of_birth = userData.data.date_of_birth;  
+          this.Uzip_code = userData.data.zip_code;
+          this.Unumber = userData.data.number;  
+          this.Uaddress = userData.data.address;
+          this.Uneighborhood = userData.data.neighborhood;  
+          this.Ucomplement = userData.data.complement;
+          this.Ustate = userData.data.state;  
+          this.Uuf = userData.data.uf;
+          this.Ucnpj = userData.data.cnpj; 
+          this.Ucompany_name = userData.data.company_name;
+          this.Uadmin_user = userData.data.admin_user;
+         }
+        else
+        {
+          alert("here");
+        }
         this._siteUiService.isLoading.next(false);
       }
     );
