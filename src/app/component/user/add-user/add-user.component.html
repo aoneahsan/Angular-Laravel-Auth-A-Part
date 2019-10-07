@@ -1,0 +1,38 @@
+<ng-container *ngIf="!isLoading; else elseTemplate">
+  <section>
+    <div class="alert alert-danger text-center" *ngIf="error">
+        The given data was invalid.
+    </div>
+    <form class="auth-form" fxLayoutAlign="center center" fxLayout="column" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <mat-form-field hintLabel="Name">
+          <input type="text" matInput placeholder="Name" name="name" ngModel required>
+          <mat-error>Required</mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Email">
+          <input type="email" matInput placeholder="Email" name="email" ngModel required email>
+          <mat-hint align="end">Valid Email</mat-hint>
+          <mat-error>Valid Email</mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Phone Number">
+        <input type="text" matInput placeholder="Number" name="phone_number" ngModel required>
+        <mat-error>Valid Phone Number</mat-error>
+      </mat-form-field>
+      <mat-form-field hintLabel="Password">
+          <input type="password" matInput placeholder="password" name="password" minlength="6" ngModel required #pwInput="ngModel">
+          <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
+          <mat-error *ngIf="pwInput.value?.length < 6">Lenght more then 6</mat-error>
+          <mat-error>Required</mat-error>
+      </mat-form-field>
+      <mat-radio-group aria-label="Select an option" color="primary" name="user_role" ngModel required>
+        <mat-radio-button value="admin" selected="selected" checked="checked">Franchise Store User</mat-radio-button><br>
+        <mat-radio-button value="franchise" selected="selected" checked="checked">Franchise User</mat-radio-button><br>
+        <mat-radio-button value="client">Client User</mat-radio-button>
+      </mat-radio-group>
+      <br>
+      <button mat-raised-button color="primary" [disabled]="!f.valid">Create User</button>
+    </form>
+  </section>
+</ng-container>
+<ng-template #elseTemplate>
+  <mat-spinner></mat-spinner>
+</ng-template>

@@ -1,1 +1,6 @@
-<h2 class="text-center">Welcome To App</h2>
+<ng-container *ngIf="!isLoading; else elseTemplate">
+  <h2 class="text-center">Welcome To App</h2>
+</ng-container>
+<ng-template #elseTemplate>
+  <mat-spinner></mat-spinner>
+</ng-template>

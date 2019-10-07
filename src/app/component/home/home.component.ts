@@ -11,7 +11,6 @@ import { Subscription } from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
 
   user: User;
-
   userSubs: Subscription;
 
   constructor(private _authService: AuthService) { }
@@ -21,7 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       data => {
         this.user = data;
       }
-    )
+    );
   }
 
   ngOnDestroy() {

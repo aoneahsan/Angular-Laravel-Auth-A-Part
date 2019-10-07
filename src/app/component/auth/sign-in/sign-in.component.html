@@ -1,4 +1,5 @@
-<section>
+<ng-container *ngIf="!isLoading; else elseTemplate">
+  <section>
     <div class="alert alert-danger text-center" *ngIf="error">
         The given data was invalid.
     </div>
@@ -18,3 +19,7 @@
         <button mat-raised-button color="primary" [disabled]="!f.valid">Submit</button>
     </form>
 </section>
+</ng-container>
+<ng-template #elseTemplate>
+  <mat-spinner></mat-spinner>
+</ng-template>

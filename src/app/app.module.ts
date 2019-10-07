@@ -16,6 +16,9 @@ import { HeaderComponent } from './component/navigation/header/header.component'
 import { SideBarComponent } from './component/navigation/side-bar/side-bar.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { UserComponent } from './component/user/user.component';
+import { AddUserComponent } from './component/user/add-user/add-user.component';
+import { EditUserComponent } from './component/user/edit-user/edit-user.component';
+import { AllUserComponent } from './component/user/all-user/all-user.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { UserComponent } from './component/user/user.component';
     HeaderComponent,
     SideBarComponent,
     DashboardComponent,
-    UserComponent
+    UserComponent,
+    AddUserComponent,
+    EditUserComponent,
+    AllUserComponent
   ],
   imports: [
     BrowserModule,

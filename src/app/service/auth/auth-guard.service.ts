@@ -10,25 +10,25 @@ import { AuthService } from './auth-service';
 
 export class AuthGuardService implements CanActivate{
 
-    constructor(private _authService: AuthService, private _router: Router) {}
+  constructor(private _authService: AuthService, private _router: Router) {}
 
-    canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot): 
-    boolean | 
-    UrlTree | 
-    Promise<boolean | UrlTree> | 
-    Observable<boolean | UrlTree> {
-        return this._authService.User.pipe(
-            take(1),
-            map(
-                user => {
-                    const isAuth = !!user;
-                    if (isAuth) {
-                        return true;
-                    }
-                    return this._router.createUrlTree(['/sign-in']);
-                }
-            )
-        )
-    }
+  canActivate(route: ActivatedRouteSnapshot, router: RouterStateSnapshot):
+  boolean |
+  UrlTree |
+  Promise<boolean | UrlTree> |
+  Observable<boolean | UrlTree> {
+    return this._authService.User.pipe(
+      take(1),
+      map(
+        user => {
+          const isAuth = !!user;
+          if (isAuth) {
+              return true;
+          }
+          return this._router.createUrlTree(['/sign-in']);
+        }
+      )
+    )
+  }
 
 }

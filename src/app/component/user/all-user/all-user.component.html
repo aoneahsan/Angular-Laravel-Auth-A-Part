@@ -1,0 +1,30 @@
+<ng-container *ngIf="!isLoading; else elseTemplate">
+  <mat-table [dataSource]="usersData">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>id</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>email</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phone_number">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>number</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{ element.phone_number }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+</ng-container>
+<ng-template #elseTemplate>
+  <mat-spinner></mat-spinner>
+</ng-template>

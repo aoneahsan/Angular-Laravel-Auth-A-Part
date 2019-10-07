@@ -1,0 +1,113 @@
+<ng-container *ngIf="!isLoading; else elseTemplate">
+  <section class="p-5">
+    <div class="alert alert-danger text-center" *ngIf="error">
+        The given data was invalid.
+    </div>
+    <form class="auth-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <input type="hidden" [(ngModel)]="userId" name="userId">
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="Name">
+          <input type="text" matInput placeholder="Name" name="name" [(ngModel)]="Uname">
+      </mat-form-field>
+      <!-- <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="Email">
+          <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="Uemail" email>
+          <mat-hint align="end">Valid Email</mat-hint>
+          <mat-error>Valid Email</mat-error>
+      </mat-form-field> -->
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="Phone Number">
+        <input type="text" matInput placeholder="Number" name="phone_number" [(ngModel)]="Uphone_number" >
+        <mat-error>Valid Phone Number</mat-error>
+      </mat-form-field>
+      <!-- <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="Password">
+        <input type="password" matInput placeholder="password" name="password" minlength="6" ngModel #pwInput="ngModel">
+        <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
+        <mat-error *ngIf="pwInput.value?.length < 6">Lenght more then 6</mat-error>
+      </mat-form-field> -->
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="Segment">
+        <input type="text" matInput placeholder="Segment" name="segment" [(ngModel)]="Usegment" >
+        <mat-error>Valid Segment</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" *ngIf="isClient" hintLabel="CPF">
+        <input type="text" matInput placeholder="CPF" name="cpf" [(ngModel)]="Ucpf" >
+        <mat-error>Valid CPF</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="place_of_issue">
+        <input type="text" matInput placeholder="place_of_issue" name="place_of_issue" [(ngModel)]="Uplace_of_issue" >
+        <mat-error>Valid place_of_issue</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="profession">
+        <input type="text" matInput placeholder="profession" name="profession" [(ngModel)]="Uprofession" >
+        <mat-error>Valid profession</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="telephone">
+        <input type="text" matInput placeholder="telephone" name="telephone" [(ngModel)]="Utelephone" >
+        <mat-error>Valid telephone</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="date_of_birth">
+        <input type="text" matInput placeholder="date_of_birth" name="date_of_birth" [(ngModel)]="Udate_of_birth" >
+        <mat-error>Valid date_of_birth</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="zip_code">
+        <input type="text" matInput placeholder="zip_code" name="zip_code" [(ngModel)]="Uzip_code" >
+        <mat-error>Valid zip_code</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="address">
+        <input type="text" matInput placeholder="address" name="address" [(ngModel)]="Uaddress" >
+        <mat-error>Valid address</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="number">
+        <input type="text" matInput placeholder="number" name="number" [(ngModel)]="Unumber" >
+        <mat-error>Valid number</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="neighborhood">
+        <input type="text" matInput placeholder="neighborhood" name="neighborhood" [(ngModel)]="Uneighborhood" >
+        <mat-error>Valid neighborhood</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="complement">
+        <input type="text" matInput placeholder="complement" name="complement" [(ngModel)]="Ucomplement" >
+        <mat-error>Valid complement</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="state">
+        <input type="text" matInput placeholder="state" name="state" [(ngModel)]="Ustate" >
+        <mat-error>Valid state</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="uf">
+        <input type="text" matInput placeholder="uf" name="uf" [(ngModel)]="Uuf" >
+        <mat-error>Valid uf</mat-error>
+      </mat-form-field>
+      <mat-form-field *ngIf="isFranchiseUser" class="col-12 col-sm-6 col-md-4" hintLabel="cnpj">
+        <input type="text" matInput placeholder="cnpj" name="cnpj" ngModel >
+        <mat-error>Valid cnpj</mat-error>
+      </mat-form-field>
+      <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="company_name">
+        <input type="text" matInput placeholder="company_name" name="company_name" [(ngModel)]="Ucompany_name" >
+        <mat-error>Valid company_name</mat-error>
+      </mat-form-field>
+      <mat-form-field *ngIf="isFranchiseUser" class="col-12 col-sm-6 col-md-4" hintLabel="admin_user">
+        <input type="text" matInput placeholder="admin_user" name="admin_user" [(ngModel)]="Uadmin_user" >
+        <mat-error>Valid admin_user</mat-error>
+      </mat-form-field>
+      <div class="form-group col-12 col-sm-6 col-md-4 d-inline-block">
+        <label for="image">Profile Image</label>
+        <input type="file"  accept="image/*" (change)="imageUploaded($event.target.files)" placeholder="profile_image" id="image" name="profile_image" ngModel>
+      </div>
+      <div class="form-group col-12 col-sm-6 col-md-4 d-inline-block">
+        <label for="mariage_status" class="d-block">mariage_status</label>
+        <mat-radio-group id="mariage_status" ngModel name="mariage_status">
+          <mat-radio-button value="0">Single</mat-radio-button>
+          <mat-radio-button value="1">Maried</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="form-group col-12 col-sm-6 col-md-4 d-inline-block">
+        <label for="gender" class="d-block">gender</label>
+        <mat-radio-group ngModel id="gender" name="gender">
+          <mat-radio-button value="0">Male</mat-radio-button>
+          <mat-radio-button value="1">Female</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <button class="col-12 mt-4" mat-raised-button color="primary" [disabled]="!f.valid">Update</button>
+    </form>
+  </section>
+</ng-container>
+<ng-template #elseTemplate>
+  <mat-spinner></mat-spinner>
+</ng-template>

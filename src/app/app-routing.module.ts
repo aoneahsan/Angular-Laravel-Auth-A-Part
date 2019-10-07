@@ -3,12 +3,16 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuardService } from './service/auth/auth-guard.service';
 import { UnAuthGuardService } from './service/auth/unauth-guard-service';
+import { SuperAdminRoleGuardService } from './guard/user/super-admin-guard.service';
 
 import { HomeComponent } from './component/home/home.component';
 import { SignInComponent } from './component/auth/sign-in/sign-in.component';
 import { SignUpComponent } from './component/auth/sign-up/sign-up.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { UserComponent } from './component/user/user.component';
+import { AddUserComponent } from './component/user/add-user/add-user.component';
+import { EditUserComponent } from './component/user/edit-user/edit-user.component';
+import { AllUserComponent } from './component/user/all-user/all-user.component';
 
 const routes: Routes = [
   {
@@ -38,7 +42,22 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: "add-user",
+    component: AddUserComponent,
+    canActivate: [AuthGuardService, SuperAdminRoleGuardService]
+  },
+  {
+    path: "edit-profile",
+    component: EditUserComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: "all-user",
+    component: AllUserComponent,
+    canActivate: [AuthGuardService, SuperAdminRoleGuardService]
   },
   {
     path: "**",
