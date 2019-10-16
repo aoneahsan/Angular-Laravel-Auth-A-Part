@@ -22,6 +22,14 @@
         <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
         <mat-error *ngIf="pwInput.value?.length < 6">Lenght more then 6</mat-error>
       </mat-form-field> -->
+      <mat-form-field class="col-12 col-sm-6 col-md-4">
+        <mat-label>Select Region</mat-label>
+        <mat-select name='region' ngModel [(value)]="USelectedRegion">
+          <mat-option *ngFor="let region of regions" [value]="region">
+            {{region}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <mat-form-field class="col-12 col-sm-6 col-md-4" hintLabel="Segment">
         <input type="text" matInput placeholder="Segment" name="segment" [(ngModel)]="Usegment" >
         <mat-error>Valid Segment</mat-error>

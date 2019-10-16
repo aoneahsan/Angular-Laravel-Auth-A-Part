@@ -23,12 +23,13 @@ export class EditUserComponent implements OnInit, OnDestroy {
   isClient: boolean = false;
   userId: string;
 
+  regions;
   // user fields
   Uname: string; Uphone_number: string; Usegment: string; Ucnpj: string;
   Ucpf: string; Uplace_of_issue: string;  Utelephone: string; Uprofession: string;
   Umariage_status: string; Ugender: string; Udate_of_birth: string; Uzip_code: string; Uaddress: string;
   Unumber: string; Uneighborhood: string; Ucomplement: string;  Ustate: string; Uuf: string;
-  Ucompany_name: string; Uadmin_user: string;
+  Ucompany_name: string; Uadmin_user: string; USelectedRegion: string = "Florida";
   fileToUpload: File;
   formData: FormData = new FormData();
   constructor(
@@ -39,29 +40,31 @@ export class EditUserComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.regions = this._siteUiService.getRegions();
     this._authService.getuserDetails().subscribe(
       userData => {
-         console.log(userData);
+        //  console.log(userData);
          if(userData.data)
          {
-          this.Uname = userData.data.name; 
+          this.Uname = userData.data.name;
           this.Uphone_number = userData.data.phone_number;
-          this.Usegment = userData.data.segment; 
-          this.Ucpf = userData.data.cpf; 
+          this.Usegment = userData.data.segment;
+          this.Ucpf = userData.data.cpf;
+          this.USelectedRegion = userData.data.region;
           this.Uplace_of_issue = userData.data.place_of_issue;
-          this.Utelephone = userData.data.telephone;  
+          this.Utelephone = userData.data.telephone;
           this.Uprofession = userData.data.profession;
-          this.Umariage_status = userData.data.mariage_status;  
+          this.Umariage_status = userData.data.mariage_status;
           this.Ugender = userData.data.gender;
-          this.Udate_of_birth = userData.data.date_of_birth;  
+          this.Udate_of_birth = userData.data.date_of_birth;
           this.Uzip_code = userData.data.zip_code;
-          this.Unumber = userData.data.number;  
+          this.Unumber = userData.data.number;
           this.Uaddress = userData.data.address;
-          this.Uneighborhood = userData.data.neighborhood;  
+          this.Uneighborhood = userData.data.neighborhood;
           this.Ucomplement = userData.data.complement;
-          this.Ustate = userData.data.state;  
+          this.Ustate = userData.data.state;
           this.Uuf = userData.data.uf;
-          this.Ucnpj = userData.data.cnpj; 
+          this.Ucnpj = userData.data.cnpj;
           this.Ucompany_name = userData.data.company_name;
           this.Uadmin_user = userData.data.admin_user;
          }
@@ -97,13 +100,13 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    console.log("submit");
+    // console.log("submit");
     this.formData.append("userId", this.userId);
     this._siteUiService.isLoading.next(true);
-    console.log(form.value);
+    // console.log(form.value);
     this._userService.editUser(form.value).subscribe(
       data => {
-        console.log("first done");
+        // console.log("first done");
         this.changeUserImage();
       }
     )
@@ -111,10 +114,10 @@ export class EditUserComponent implements OnInit, OnDestroy {
   }
 
   changeUserImage() {
-    console.log("second start");
+    // console.log("second start");
     return this._userService.editUserImage(this.formData).subscribe(
       data=>{
-        console.log("third done");
+        // console.log("third done");
         this._router.navigate(['/user']);
     });
   }
@@ -122,7 +125,7 @@ export class EditUserComponent implements OnInit, OnDestroy {
   imageUploaded(files: FileList){
     this.fileToUpload = files.item(0);
     this.formData.append('profile_image', this.fileToUpload, this.fileToUpload.name);
-    console.log("images");
+    // console.log("images");
   }
 
   ngOnDestroy() {

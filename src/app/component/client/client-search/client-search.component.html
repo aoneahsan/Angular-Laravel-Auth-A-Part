@@ -1,0 +1,77 @@
+<ng-container *ngIf="!error; else elseTemplate">
+    <ng-container *ngIf="isLoading; else elseTemplate">
+        <h3 class="text-center">Your Region is <strong>"{{ user_region }}"</strong></h3>
+        <hr>
+        <div class="col-12 col-md-3 d-inline-block">
+            <h4>Search All Agents</h4>
+            <button mat-raised-button color="primary" (click)="getAllAgents()">Get All Agents</button>
+        </div>
+        <div class="col-12 col-md-4 d-inline-block">
+            <h4>Search Agents in Your Region</h4>
+            <button mat-raised-button color="primary" (click)="getAgentsInMyRegion()">Get Own Region Agents</button>
+        </div>
+        <div class="col-12 col-md-5 d-inline-block">
+            <h4>Search Agents in a Specific Region</h4>
+            <div class="row">
+                <div class="col-8 d-inline-block">
+                    <mat-form-field>
+                        <mat-label>Select Region</mat-label>
+                        <mat-select [(value)]="selectedRegionValue" name='region' (onChange)="getAgentBySpecificRegion()">
+                            <mat-option *ngFor="let region of regions" [value]="region">
+                                {{region}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col-4-d-inline-block">
+                    <button mat-raised-button color="primary" (click)="getAgentBySpecificRegion()">Search Agents</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h3 class="text-center">Result</h3>
+        <ng-container *ngIf="loadingAgents; else elseTemplate">
+            <div class="p-4">
+                <mat-table [dataSource]="agentsData">
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{ element.id }}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="region">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Region</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{ element.region }}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="email">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{ element.email }}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="photo">
+                        <mat-header-cell *matHeaderCellDef>Photo</mat-header-cell>
+                        <mat-cell *matCellDef="let element"><img src="{{ element.photo }}" alt=""></mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="phone_number">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</mat-header-cell>
+                        <mat-cell *matCellDef="let element">{{ element.phone_number }}</mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+        </ng-container>
+        <ng-template #elseTemplate>
+            <mat-spinner></mat-spinner>
+        </ng-template>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <mat-spinner></mat-spinner>
+    </ng-template>
+</ng-container>
+<ng-template #elseTemplate>
+    <div class="alert alert-warning" role="alert">
+      <h4>{{ error }}</h4>
+    </div>
+</ng-template>

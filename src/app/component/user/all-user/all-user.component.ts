@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
+import { Subscription } from 'rxjs';
+
 import { UserService } from 'src/app/service/user/user-service';
 import { SiteUIService } from 'src/app/service/site/site-ui-service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-all-user',
@@ -11,8 +12,8 @@ import { Subscription } from 'rxjs';
 })
 export class AllUserComponent implements OnInit, OnDestroy {
 
-  displayedColumns = ['id', 'name', 'email', 'phone_number'];
   usersData = new MatTableDataSource<any>();
+  displayedColumns = ['id', 'name', 'email', 'phone_number'];
   isLoading: boolean = false;
   loadingSubs: Subscription;
 

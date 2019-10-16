@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './service/auth/auth-guard.service';
 import { UnAuthGuardService } from './service/auth/unauth-guard-service';
 import { SuperAdminRoleGuardService } from './guard/user/super-admin-guard.service';
+import { ClientRoleGuardService } from './guard/user/client-guard-service';
 
 import { HomeComponent } from './component/home/home.component';
 import { SignInComponent } from './component/auth/sign-in/sign-in.component';
@@ -13,6 +14,7 @@ import { UserComponent } from './component/user/user.component';
 import { AddUserComponent } from './component/user/add-user/add-user.component';
 import { EditUserComponent } from './component/user/edit-user/edit-user.component';
 import { AllUserComponent } from './component/user/all-user/all-user.component';
+import { ClientSearchComponent } from './component/client/client-search/client-search.component';
 
 const routes: Routes = [
   {
@@ -22,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [UnAuthGuardService]
   },
   {
     path: 'sign-in',
@@ -58,6 +61,11 @@ const routes: Routes = [
     path: "all-user",
     component: AllUserComponent,
     canActivate: [AuthGuardService, SuperAdminRoleGuardService]
+  },
+  {
+    path: "client-search-area",
+    component: ClientSearchComponent,
+    canActivate: [AuthGuardService, ClientRoleGuardService]
   },
   {
     path: "**",

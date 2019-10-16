@@ -16,9 +16,12 @@ export class SignUpComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
   loadingSubs: Subscription;
 
+  regions;
+
   constructor(private _authService: AuthService, private router: Router, private _siteUiService: SiteUIService) { }
 
   ngOnInit() {
+    this.regions = this._siteUiService.getRegions();
     this.loadingSubs = this._siteUiService.isLoading.subscribe(
       state => {
         this.isLoading = state;
@@ -31,7 +34,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     // console.log(form.value);
     this._authService.signUp(form.value).subscribe(
       data => {
-        console.log("new user data (from signup component) = "+ data);
+        // console.log("new user data (from signup component) = "+ data);
         this._siteUiService.isLoading.next(false);
         this.router.navigate(['/']);
       },

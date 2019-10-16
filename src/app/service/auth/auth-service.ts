@@ -14,23 +14,21 @@ import { SiteUIService } from '../site/site-ui-service';
     providedIn: "root"
 })
 export class AuthService {
-
-  // for My Localhost Work
-  // url: string = "http://marketingob-laravel.ahsan/api/";
-  // for Live Site Process
-  url: string = "http://localhost:8000/api/";
-
+  
   User = new BehaviorSubject<User>(null);
-  userId: number;
+  userId: any;
+  userRegion: any;
+  apiRequestToken: string = "";
   userRoleId: number;
   userDetails;
   tokenExpirationTime;
+
   constructor(private _http: HttpClient, private router: Router, private _siteUiService: SiteUIService) {}
 
   // signin functions
   signIn(data) {
       return this._http.post(
-          this.url + "login",
+          this._siteUiService.getHttpRequestUrl() + "login",
           data
       ).pipe(
           catchError(this.errorHandle),
@@ -45,7 +43,7 @@ export class AuthService {
   // signup function
   signUp(data) {
       return this._http.post(
-          this.url + "register",
+        this._siteUiService.getHttpRequestUrl() + "register",
           data
       )
       .pipe(
@@ -71,7 +69,7 @@ export class AuthService {
     }
     this.tokenExpirationTime = null;
     return this._http.post(
-        this.url + "logout",
+      this._siteUiService.getHttpRequestUrl() + "logout",
         requestData
     );
   }
@@ -98,18 +96,22 @@ export class AuthService {
 
   // function to handle authenticate requests
   private authanticate(resData) {
-    console.log(resData);
+    // console.log(resData);
     this._siteUiService.isLoading.next(true);
     const expireIn = new Date().getTime() + 3600000;
     const newUser = new User(
         resData.data.id,
         resData.data.role_id,
+        resData.data.role_name,
+        resData.data.region,
         resData.data.email,
         resData.data.api_token,
         expireIn
       );
       this.userId = resData.data.id;
       this.userRoleId = resData.data.role_id;
+      this.apiRequestToken = resData.data.api_token;
+      this.userRegion = resData.data.region;
       this.User.next(newUser);
       // console.log("User = " , newUser);
       localStorage.setItem('userDetails', JSON.stringify(newUser));
@@ -132,14 +134,20 @@ export class AuthService {
       const loadUser = new User(
           userData.id,
           userData.roleId,
+          userData.roleName,
+          userData.region,
           userData.email,
           userData._tokken,
           userData.expireIn
       );
       this.autoLogout();
       if (loadUser.token) {
-          // console.log(loadUser);
-          this.User.next(loadUser);
+        // console.log(loadUser);
+        this.User.next(loadUser);
+        this.userId = loadUser.id;
+        this.userRoleId = loadUser.roleId;
+        this.userRegion = loadUser.region;
+        this.apiRequestToken = loadUser.token;
       }
       this._siteUiService.isLoading.next(false);
   }
@@ -168,8 +176,8 @@ export class AuthService {
           token: userData._tokken
       };
       return this._http.post<any>(
-          this.url + "userData",
-          newUserData
+        this._siteUiService.getHttpRequestUrl() + "userData",
+        newUserData
       ).pipe(
         catchError(this.tokenErrorHandle)
       );

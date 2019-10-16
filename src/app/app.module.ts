@@ -19,6 +19,7 @@ import { UserComponent } from './component/user/user.component';
 import { AddUserComponent } from './component/user/add-user/add-user.component';
 import { EditUserComponent } from './component/user/edit-user/edit-user.component';
 import { AllUserComponent } from './component/user/all-user/all-user.component';
+import { ClientSearchComponent } from './component/client/client-search/client-search.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AllUserComponent } from './component/user/all-user/all-user.component';
     UserComponent,
     AddUserComponent,
     EditUserComponent,
-    AllUserComponent
+    AllUserComponent,
+    ClientSearchComponent
   ],
   imports: [
     BrowserModule,
