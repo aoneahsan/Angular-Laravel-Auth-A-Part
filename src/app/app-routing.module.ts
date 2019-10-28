@@ -1,3 +1,6 @@
+import { AdminFranchiseGuardService } from './guard/user/admin-franchise-guard-service';
+import { PropertyEditComponent } from './component/property/property-edit/property-edit.component';
+import { PropertyComponent } from './component/property/property.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -15,6 +18,7 @@ import { AddUserComponent } from './component/user/add-user/add-user.component';
 import { EditUserComponent } from './component/user/edit-user/edit-user.component';
 import { AllUserComponent } from './component/user/all-user/all-user.component';
 import { ClientSearchComponent } from './component/client/client-search/client-search.component';
+import { PropertyAddComponent } from './component/property/property-add/property-add.component';
 
 const routes: Routes = [
   {
@@ -66,6 +70,21 @@ const routes: Routes = [
     path: "client-search-area",
     component: ClientSearchComponent,
     canActivate: [AuthGuardService, ClientRoleGuardService]
+  },
+  {
+    path: "properties",
+    component: PropertyComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: "property-add",
+    component: PropertyAddComponent,
+    canActivate: [AuthGuardService, AdminFranchiseGuardService]
+  },
+  {
+    path: "property-edit/{id}",
+    component: PropertyEditComponent,
+    canActivate: [AuthGuardService, AdminFranchiseGuardService]
   },
   {
     path: "**",

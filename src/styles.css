@@ -13,6 +13,12 @@ a {
     text-decoration: none;
     color: white;
 }
+.map_property_title {
+    color: red;
+}
+.map_property_price {
+    color: green;
+}
 mat-toolbar a:hover, mat-toolbar a:active {
     color: lightgray !important;
     text-decoration: underline !important;

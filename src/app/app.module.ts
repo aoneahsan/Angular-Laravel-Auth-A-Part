@@ -20,6 +20,9 @@ import { AddUserComponent } from './component/user/add-user/add-user.component';
 import { EditUserComponent } from './component/user/edit-user/edit-user.component';
 import { AllUserComponent } from './component/user/all-user/all-user.component';
 import { ClientSearchComponent } from './component/client/client-search/client-search.component';
+import { PropertyComponent } from './component/property/property.component';
+import { PropertyAddComponent } from './component/property/property-add/property-add.component';
+import { PropertyEditComponent } from './component/property/property-edit/property-edit.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { ClientSearchComponent } from './component/client/client-search/client-s
     AddUserComponent,
     EditUserComponent,
     AllUserComponent,
-    ClientSearchComponent
+    ClientSearchComponent,
+    PropertyComponent,
+    PropertyAddComponent,
+    PropertyEditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { SiteUIService } from 'src/app/service/site/site-ui-service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
@@ -8,19 +9,17 @@ import { throwError } from 'rxjs';
 })
 export class UserService {
 
-  // for My Localhost Work
-  // url: string = "http://marketingob-laravel.ahsan/api/";
-  // for Live Site Process
-  url: string = "http://localhost:8000/api/";
-
-  constructor(private _http: HttpClient) {}
+  constructor(
+    private _http: HttpClient,
+    private _siteUiService: SiteUIService
+  ) {}
 
   // Super Admin Part Start
 
   allUser() {
     const data = JSON.parse(localStorage.getItem('userDetails'));
     return this._http.post<any>(
-      this.url + "alluser",
+      this._siteUiService.getHttpRequestUrl() + "alluser",
       data
     )
     .pipe(
@@ -30,7 +29,7 @@ export class UserService {
 
   addUser(data) {
     return this._http.post(
-      this.url + "adduser",
+      this._siteUiService.getHttpRequestUrl() + "adduser",
       data
     )
     .pipe(
@@ -40,7 +39,7 @@ export class UserService {
 
   editUser(data) {
     return this._http.post(
-      this.url + "edituser",
+      this._siteUiService.getHttpRequestUrl() + "edituser",
       data
     )
     .pipe(
@@ -50,7 +49,7 @@ export class UserService {
 
   editUserImage(data) {
     return this._http.post(
-      this.url + "edituserimage",
+      this._siteUiService.getHttpRequestUrl() + "edituserimage",
       data
     )
     .pipe(

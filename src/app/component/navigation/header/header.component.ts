@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   isAdmin: boolean = false;
   isFranchiseUser: boolean = false;
   isClient: boolean = false;
+  isNotClient: boolean = false;
   constructor(private _authService: AuthService, private router: Router) { }
 
   ngOnInit() {
@@ -28,13 +29,17 @@ export class HeaderComponent implements OnInit {
         this.isAuth = !!user;
         if(!!user) {
           if (user.roleId == 1) {
+            this.isNotClient = true;
             this.isSuperAdmin = true;
           } else if(user.roleId == 2) {
+            this.isNotClient = true;
             this.isAdmin = true;
           } else if(user.roleId == 3) {
+            this.isNotClient = true;
             this.isFranchiseUser = true;
           } else if(user.roleId == 4) {
             this.isClient = true;
+            this.isNotClient = false;
           }
         }
       }

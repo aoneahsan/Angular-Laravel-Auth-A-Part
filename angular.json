@@ -29,7 +29,8 @@
             "scripts": [
               "src/assets/bootstrap/dist/js/jquery.js",
               "src/assets/bootstrap/dist/js/popper.js",
-              "src/assets/bootstrap/dist/js/bootstrap.min.js"
+              "src/assets/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/js/main-js.js"
             ]
           },
           "configurations": {

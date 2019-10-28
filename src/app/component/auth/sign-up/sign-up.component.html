@@ -1,45 +1,81 @@
-<ng-container *ngIf="!isLoading; else elseTemplate">
+<ng-container *ngIf="!isLoading; else spinner_con">
   <section>
     <div class="alert alert-danger text-center" *ngIf="error">
         The given data was invalid.
     </div>
-    <form class="auth-form" fxLayoutAlign="center center" fxLayout="column" #f="ngForm" (ngSubmit)="onSubmit(f)">
-      <mat-form-field hintLabel="Name">
-          <input type="text" matInput placeholder="Name" name="name" ngModel required>
-          <mat-error>Required</mat-error>
-      </mat-form-field>
-      <mat-form-field hintLabel="Email">
-          <input type="email" matInput placeholder="Email" name="email" ngModel required email>
-          <mat-hint align="end">Valid Email</mat-hint>
-          <mat-error>Valid Email</mat-error>
-      </mat-form-field>
-      <mat-form-field hintLabel="Phone Number">
-        <input type="text" matInput placeholder="Number" name="phone_number" ngModel required>
-        <mat-error>Valid Phone Number</mat-error>
-      </mat-form-field>
-      <mat-form-field hintLabel="Password">
-          <input type="password" matInput placeholder="password" name="password" minlength="6" ngModel required #pwInput="ngModel">
-          <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
-          <mat-error *ngIf="pwInput.value?.length < 6">Lenght more then 6</mat-error>
-          <mat-error>Required</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Select Region</mat-label>
-        <mat-select name='region' ngModel>
-          <mat-option *ngFor="let region of regions" [value]="region">
-            {{region}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-radio-group aria-label="Select an option" color="primary" name="user_role" ngModel required>
-        <mat-radio-button value="franchise" selected="selected" checked="checked">Franchise</mat-radio-button>
-        <mat-radio-button value="client">Client</mat-radio-button>
-      </mat-radio-group>
-      <br>
-      <button mat-raised-button color="primary" [disabled]="!f.valid">Submit</button>
-    </form>
+    <mat-radio-group class="mx-auto w-100 d-inline-block text-center mt-4" aria-label="Select an option" color="primary" name="user_role" ngModel required>
+      <mat-radio-button class="mr-3" value="franchise" selected="selected" (click)="userRoleSelected = true; userRoleChange_F(); userRole = 'franchise'">Franchise</mat-radio-button>
+      <mat-radio-button value="client" (click)="userRoleSelected = true; userRoleChange_C(); userRole = 'client'">Client</mat-radio-button>
+    </mat-radio-group>
+    <ng-container *ngIf="userRoleSelected; else user_role_not_selected_con">
+      <ng-container *ngIf="userRole_Franchise; else client_form">
+        <form class="auth-form" fxLayoutAlign="center center" fxLayout="column" #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <mat-form-field hintLabel="Name">
+              <input type="text" matInput placeholder="Name" name="name" ngModel required>
+              <mat-error>Required</mat-error>
+          </mat-form-field>
+          <mat-form-field hintLabel="Email">
+              <input type="email" matInput placeholder="Email" name="email" ngModel required email>
+              <mat-hint align="end">Valid Email</mat-hint>
+              <mat-error>Valid Email</mat-error>
+          </mat-form-field>
+          <mat-form-field hintLabel="zip code">
+              <input type="text" matInput placeholder="zip code" name="zip_code" ngModel required>
+              <mat-error>Required</mat-error>
+          </mat-form-field>
+          <!-- <mat-form-field hintLabel="Phone Number">
+            <input type="text" matInput placeholder="Number" name="phone_number" ngModel required>
+            <mat-error>Valid Phone Number</mat-error>
+          </mat-form-field> -->
+          <mat-form-field hintLabel="Password">
+              <input type="password" matInput placeholder="password" name="password" minlength="6" ngModel required #pwInput="ngModel">
+              <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
+              <mat-error *ngIf="pwInput.value?.length < 6">Lenght more then 6</mat-error>
+              <mat-error>Required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Select Region</mat-label>
+            <mat-select name='region' required ngModel>
+              <mat-option *ngFor="let region of regions" [value]="region">
+                {{region}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <input type="hidden" name="user_role" [(ngModel)]="userRole">
+          <br>
+          <button mat-raised-button color="primary" [disabled]="!f.valid">Submit</button>
+        </form>
+      </ng-container>
+      <ng-template #client_form>
+        <form class="auth-form" fxLayoutAlign="center center" fxLayout="column" #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <mat-form-field hintLabel="Name">
+              <input type="text" matInput placeholder="Name" name="name" ngModel required>
+              <mat-error>Required</mat-error>
+          </mat-form-field>
+          <mat-form-field hintLabel="Email">
+              <input type="email" matInput placeholder="Email" name="email" ngModel required email>
+              <mat-hint align="end">Valid Email</mat-hint>
+              <mat-error>Valid Email</mat-error>
+          </mat-form-field>
+          <mat-form-field hintLabel="zip code">
+              <input type="text" matInput placeholder="zip code" name="zip_code" ngModel required>
+              <mat-error>Required</mat-error>
+          </mat-form-field>
+          <mat-form-field hintLabel="Password">
+              <input type="password" matInput placeholder="password" name="password" minlength="6" ngModel required #pwInput="ngModel">
+              <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
+              <mat-error *ngIf="pwInput.value?.length < 6">Lenght more then 6</mat-error>
+              <mat-error>Required</mat-error>
+          </mat-form-field>
+          <input type="hidden" name="user_role" [(ngModel)]="userRole">
+          <br>
+          <button mat-raised-button color="primary" [disabled]="!f.valid">Submit</button>
+        </form>
+      </ng-template>
+    </ng-container>
+    <ng-template #user_role_not_selected_con></ng-template>
   </section>
 </ng-container>
-<ng-template #elseTemplate>
+<ng-template #spinner_con>
   <mat-spinner></mat-spinner>
 </ng-template>

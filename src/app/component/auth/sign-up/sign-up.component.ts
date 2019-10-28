@@ -15,6 +15,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
   error: string = "";
   isLoading: boolean = false;
   loadingSubs: Subscription;
+  userRoleSelected: boolean = false;
+  userRole_Franchise: boolean = true;
+  userRole: string;
 
   regions;
 
@@ -44,6 +47,13 @@ export class SignUpComponent implements OnInit, OnDestroy {
       }
     );
     form.reset();
+  }
+
+  userRoleChange_F() {
+    this.userRole_Franchise = true;
+  }
+  userRoleChange_C() {
+    this.userRole_Franchise = false;
   }
 
   ngOnDestroy() {
