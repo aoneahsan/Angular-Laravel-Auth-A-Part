@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { Subscription } from 'rxjs';
@@ -22,15 +22,19 @@ export class PropertyEditComponent implements OnInit, OnDestroy {
   formData: FormData = new FormData();
   regions;
   userId: any;
+  propertyId: any;
 
   constructor(
     private _router: Router, 
     private _propertyService: PropertyService,
     private _siteUiService: SiteUIService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.propertyId = this._route.snapshot.params['id'];
+    this.formData.append('propertyId', this.propertyId);
     this.regions = this._siteUiService.getRegions();
     this.loadingSubs = this._siteUiService.isLoading.subscribe(
       state => {
@@ -43,10 +47,9 @@ export class PropertyEditComponent implements OnInit, OnDestroy {
   onSubmit(form: NgForm) {
     // this._siteUiService.isLoading.next(true);
     // console.log(form.value);
-    this._propertyService.addProperty(form.value).subscribe(
+    this._propertyService.editProperty(form.value).subscribe(
       data => {
         // console.log("new user data (from signup component) = "+ data);
-        this.formData.append('propertyId', data.data);
         this.changeImage();
       },
       error => {
@@ -59,7 +62,7 @@ export class PropertyEditComponent implements OnInit, OnDestroy {
   
   changeImage() {
     // console.log("second start");
-    return this._propertyService.addPropertyImage(this.formData).subscribe(
+    return this._propertyService.editImage(this.formData).subscribe(
       data=>{
         // console.log("third done");
         this._siteUiService.isLoading.next(false);

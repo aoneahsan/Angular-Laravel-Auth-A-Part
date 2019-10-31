@@ -52,4 +52,11 @@ export class PropertyService {
             data
         );
     }
+
+    deleteProperty(propertyId) {
+        return this._http.post<any>(
+            this._siteUiService.getHttpRequestUrl() + "delete-property",
+            propertyId
+        );
+    }
 }

@@ -20,14 +20,24 @@
 
           <ng-container matColumnDef="price">
           <mat-header-cell *matHeaderCellDef mat-sort-header>price</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{ element.price }}</mat-cell>
+          <mat-cell *matCellDef="let element">{{ element.price }} $</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Edit">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
+            <mat-cell *matCellDef="let element"><a class="btn btn-info" routerLink="/property-edit/{{ element.id }}">Edit</a></mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Delete">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Delete</mat-header-cell>
+            <mat-cell *matCellDef="let element"><a class="btn btn-danger" (click)="deleteProperty(element.id)">Delete</a></mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="image">
           <mat-header-cell *matHeaderCellDef mat-sort-header>image</mat-header-cell>
           <mat-cell *matCellDef="let element"><img class="w-50" src="{{ element.image }}" alt="{{ element.title }}"></mat-cell>
           </ng-container>
-
+          
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>

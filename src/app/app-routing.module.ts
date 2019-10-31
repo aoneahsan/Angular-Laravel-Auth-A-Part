@@ -82,7 +82,12 @@ const routes: Routes = [
     canActivate: [AuthGuardService, AdminFranchiseGuardService]
   },
   {
-    path: "property-edit/{id}",
+    path: "property-edit/:id",
+    component: PropertyEditComponent,
+    canActivate: [AuthGuardService, AdminFranchiseGuardService]
+  },
+  {
+    path: "property-delete/:id",
     component: PropertyEditComponent,
     canActivate: [AuthGuardService, AdminFranchiseGuardService]
   },

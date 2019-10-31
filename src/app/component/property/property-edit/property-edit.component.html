@@ -4,29 +4,29 @@
         The given data was invalid.
     </div>
     <form class="auth-form" fxLayoutAlign="center center" fxLayout="column" #f="ngForm" (ngSubmit)="onSubmit(f)">
-        <input type="hidden" name="userId" [(ngModel)]="userId">
+        <input type="hidden" name="propertyId" [(ngModel)]="propertyId">
         <mat-form-field hintLabel="title">
-            <input type="text" matInput placeholder="title" name="title" ngModel required>
+            <input type="text" matInput placeholder="title" name="title" ngModel>
             <mat-hint align="end">Valid title</mat-hint>
             <mat-error>Valid title</mat-error>
         </mat-form-field>
         <mat-form-field hintLabel="description">
-            <input type="text" matInput placeholder="description" name="description" ngModel required>
+            <input type="text" matInput placeholder="description" name="description" ngModel>
             <mat-hint align="end">Valid description</mat-hint>
             <mat-error>Valid description</mat-error>
         </mat-form-field>
         <mat-form-field hintLabel="price">
-            <input type="number" matInput placeholder="price" name="price" ngModel required>
+            <input type="number" matInput placeholder="price" name="price" ngModel>
             <mat-hint align="end">Valid price</mat-hint>
             <mat-error>Valid price</mat-error>
         </mat-form-field>
         <mat-form-field hintLabel="latitude">
-            <input type="text" matInput placeholder="latitude" name="latitude" ngModel required>
+            <input type="text" matInput placeholder="latitude" name="latitude" ngModel>
             <mat-hint align="end">Valid latitude (example: 31.5204 for lahore)</mat-hint>
             <mat-error>Valid latitude</mat-error>
         </mat-form-field>
         <mat-form-field hintLabel="longitude">
-            <input type="text" matInput placeholder="longitude" name="longitude" ngModel required>
+            <input type="text" matInput placeholder="longitude" name="longitude" ngModel>
             <mat-hint align="end">Valid longitude (example: 74.3587 for lahore)</mat-hint>
             <mat-error>Valid longitude</mat-error>
         </mat-form-field>

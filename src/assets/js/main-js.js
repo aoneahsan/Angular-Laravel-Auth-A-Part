@@ -30,7 +30,7 @@ $(document).ready(function() {
                                     <span class="map_property_title"><strong>${properties[i].title}</strong></span>
                                 </div>
                                 <div class='w-25 float-left'>
-                                    <span class='map_property_price'>${properties[i].price}$</span>
+                                    <span class='map_property_price'>${properties[i].price} $</span>
                                 </div>
                             </div>`
                 });
