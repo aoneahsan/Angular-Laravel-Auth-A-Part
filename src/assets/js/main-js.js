@@ -56,10 +56,10 @@ $(document).ready(function() {
         );
         directionsDisplay.setMap(map);
         
-        // Click Listner Code
+        // Click Listner Code 
         google.maps.event.addListener(map, "click", function(event) {
             console.log(event.latLng);
-            // alert(event.latLng);
+            alert(event.latLng);
         });
 
         // add marker code

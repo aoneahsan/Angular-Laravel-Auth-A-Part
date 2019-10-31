@@ -6,6 +6,13 @@
     <a mat-raised-button routerLink="/dashboard" *ngIf="isAuth">DashBoard</a>
     <a mat-raised-button routerLink="/sign-in" *ngIf="!isAuth">Sign-In</a>
     <a mat-raised-button routerLink="/sign-up" *ngIf="!isAuth">Sign-Up</a>
+    <button *ngIf="isAuth && isNotClient" color="warn" mat-raised-button [matMenuTriggerFor]="propertyMenu">
+      Properties
+    </button>
+    <mat-menu #propertyMenu="matMenu">
+      <a mat-menu-item routerLink="/properties">Properties</a>
+      <a mat-menu-item routerLink="/property-add">Add Property</a>
+    </mat-menu>
     <button *ngIf="isAuth" color="accent" mat-raised-button [matMenuTriggerFor]="appMenu">
       My Account
     </button>
@@ -16,13 +23,6 @@
       <a mat-menu-item *ngIf="isSuperAdmin" routerLink="/all-user">All Users</a>
       <a mat-menu-item *ngIf="isSuperAdmin" routerLink="/add-user">Add New User</a>
       <a mat-menu-item (click)="logout()" *ngIf="isAuth">Logout</a>
-    </mat-menu>
-    <button *ngIf="isAuth && isNotClient" color="warn" mat-raised-button [matMenuTriggerFor]="propertyMenu">
-      Properties
-    </button>
-    <mat-menu #propertyMenu="matMenu">
-      <a mat-menu-item routerLink="/properties">Properties</a>
-      <a mat-menu-item routerLink="/property-add">Add Property</a>
     </mat-menu>
   </div>
   <div fxHide.gt-xs fxFlex fxLayout fxLayoutAlign="end" fxLayoutGap="10px">
