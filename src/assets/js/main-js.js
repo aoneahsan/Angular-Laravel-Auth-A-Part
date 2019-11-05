@@ -94,9 +94,10 @@ $(document).ready(function() {
 
     };
 
-    setTimeout(function() {
-        // alert("ok");
-        initialize();
-    }, 3000);
+    if (window.location.href.indexOf("properties") > -1) {
+        setTimeout(function() {
+            initialize();
+        }, 3000);
+    }
 
-})
+});
