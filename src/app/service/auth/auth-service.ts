@@ -14,7 +14,7 @@ import { SiteUIService } from '../site/site-ui-service';
     providedIn: "root"
 })
 export class AuthService {
-  
+
   User = new BehaviorSubject<User>(null);
   userId: any;
   userRegion: any;
